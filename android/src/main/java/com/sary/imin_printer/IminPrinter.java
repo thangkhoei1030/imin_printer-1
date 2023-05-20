@@ -104,12 +104,12 @@ public class IminPrinter {
     public void init(Context context) {
         iminPrintUtils = IminPrintUtils.getInstance(context);
         iminPrintUtils.resetDevice();
-        iminPrintUtils.initPrinter(IminPrintUtils.PrintConnectType.USB);
+        iminPrintUtils.initPrinter(IminPrintUtils.PrintConnectType.SPI);
         result.success(true);
     }
 
     private void getPrinterStatus() {
-        int status = iminPrintUtils.getPrinterStatus(IminPrintUtils.PrintConnectType.USB);
+        int status = iminPrintUtils.getPrinterStatus(IminPrintUtils.PrintConnectType.SPI);
         result.success(status);
     }
 
