@@ -121,7 +121,7 @@ public class IminPrinter {
 
 
     private void printAndFeedPaper() {
-        int lines = Objects.requireNonNull(call.argument("lines"));
+        int lines = call.argument("lines");
         iminPrintUtils.printAndFeedPaper(lines);
         result.success(true);
     }
@@ -134,21 +134,21 @@ public class IminPrinter {
 
 
     private void setAlignment() {
-        int alignment = Objects.requireNonNull(call.argument("alignment"));
+        int alignment = call.argument("alignment");
         iminPrintUtils.setAlignment(alignment);
         result.success(true);
     }
 
 
     private void setTextSize() {
-        int textSize = Objects.requireNonNull(call.argument("textSize"));
+        int textSize = call.argument("textSize");
         iminPrintUtils.setTextSize(textSize);
         result.success(true);
     }
 
 
     private void setTextTypeface() {
-        int typeface = Objects.requireNonNull(call.argument("typeface"));
+        int typeface = call.argument("typeface");
         Typeface selectedTypeFace;
         switch (typeface){
             case 1:
@@ -173,30 +173,33 @@ public class IminPrinter {
 
 
     private void setTextStyle() {
-        int textStyle = Objects.requireNonNull(call.argument("textStyle"));
+        int textStyle = call.argument("textStyle");
         iminPrintUtils.setTextStyle(textStyle);
         result.success(true);
     }
 
 
     private void setTextLineSpacing() {
-        float lineSpacing = Objects.requireNonNull(call.argument("lineSpacing"));
+        float lineSpacing = call.argument("lineSpacing");
         iminPrintUtils.setTextLineSpacing(lineSpacing);
         result.success(true);
     }
 
 
     private void setTextWidth() {
-        int textWidth = Objects.requireNonNull(call.argument("textWidth"));
+        int textWidth = call.argument("textWidth");
         iminPrintUtils.setTextWidth(textWidth);
         result.success(true);
     }
 
 
     private void printText() {
-        String text = Objects.requireNonNull(call.argument("text"));
-        iminPrintUtils.printText(text);
-        result.success(true);
+        try{
+            String text = call.argument("text");
+            iminPrintUtils.printText(text);
+        }finally{
+            result.success(true);
+        }
     }
 
 
@@ -230,20 +233,20 @@ public class IminPrinter {
     }
 
     private void printQr() {
-        String data = Objects.requireNonNull(call.argument("data"));
-        int alignment = Objects.requireNonNull(call.argument("alignment"));
+        String data = call.argument("data");
+        int alignment = call.argument("alignment");
         iminPrintUtils.printQrCode(data, alignment);
         result.success(true);
     }
 
     private void setQrSize() {
-        int size = Objects.requireNonNull(call.argument("size"));
+        int size = call.argument("size");
         iminPrintUtils.setQrCodeSize(size);
         result.success(true);
     }
 
     private void setQrCorrectionLevel() {
-        int level = Objects.requireNonNull(call.argument("level"));
+        int level = call.argument("level");
         iminPrintUtils.setQrCodeErrorCorrectionLev(level);
         result.success(true);
     }
