@@ -16,7 +16,7 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url("${project(':imin_printer').file('libs').path}") }
+//        maven { url("${project(':imin_printer').file('libs').path}") }
 
     }
 }
@@ -37,7 +37,10 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation files('libs/IminLibs1.0.15.jar')
     implementation files('libs/iminPrinterSDK.jar')
+
+
 }

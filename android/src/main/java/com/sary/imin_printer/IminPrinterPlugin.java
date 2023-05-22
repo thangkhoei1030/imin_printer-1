@@ -1,6 +1,5 @@
 package com.sary.imin_printer;
 
-
 import static com.sary.imin_printer.IminPrinter.channelMethods;
 import static com.sary.imin_printer.IminPrinter.initPrinter;
 
@@ -8,20 +7,19 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.sary.imin_printer.IminPrinter;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
 
 /** IminPrinterPlugin */
-public class IminPrinterPlugin implements FlutterPlugin, MethodCallHandler{
+public class IminPrinterPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler {
   private MethodChannel channel;
   private Context context;
-  private  IminPrinter iminPrinter;
+  private IminPrinter iminPrinter;
   public static MethodCall call;
-  public static Result result;
+  public static MethodChannel.Result result;
 
 
   @Override
@@ -32,10 +30,9 @@ public class IminPrinterPlugin implements FlutterPlugin, MethodCallHandler{
   }
 
   @Override
-  public void onMethodCall(@NonNull MethodCall methodCall, @NonNull Result res) {
+  public void onMethodCall(@NonNull MethodCall methodCall, @NonNull MethodChannel.Result res) {
     call = methodCall;
     result = res;
-
     if(call.method.equals(initPrinter)){
       iminPrinter = new IminPrinter();
       iminPrinter.init(context);

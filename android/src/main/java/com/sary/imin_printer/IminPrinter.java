@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class IminPrinter {
     private IminPrintUtils iminPrintUtils;
@@ -42,11 +41,11 @@ public class IminPrinter {
     public static final String setQrCorrectionLevel = "setQrCorrectionLevel";
     public static final String setPageFormat = "setPageFormat";
     public static final String openCashBox = "openCashBox";
-    public static final List<String> channelMethods = Arrays.asList(initPrinter,getPrinterStatus,printAndLineFeed,printAndFeedPaper,partialCut,setAlignment,setTextSize,setTextTypeface,setTextStyle,setTextLineSpacing,setTextWidth,printText,printColumnsText,setBarCodeHeight,setBarCodeContentPrintPos,printBarCode,setLeftMargin,printQrCode,setPageFormat,setQrSize,setQrCorrectionLevel,openCashBox);
+    public static final List<String> channelMethods = Arrays.asList(initPrinter, getPrinterStatus, printAndLineFeed, printAndFeedPaper, partialCut, setAlignment, setTextSize, setTextTypeface, setTextStyle, setTextLineSpacing, setTextWidth, printText, printColumnsText, setBarCodeHeight, setBarCodeContentPrintPos, printBarCode, setLeftMargin, printQrCode, setPageFormat, setQrSize, setQrCorrectionLevel, openCashBox);
 
 
-    public void runSDkMethods(String method){
-        switch (method){
+    public void runSDkMethods(String method) {
+        switch (method) {
             case getPrinterStatus:
                 getPrinterStatus();
                 break;
@@ -141,16 +140,22 @@ public class IminPrinter {
 
 
     private void setTextSize() {
-        int textSize = call.argument("textSize");
-        iminPrintUtils.setTextSize(textSize);
-        result.success(true);
+        try {
+            int textSize = call.argument("textSize");
+            iminPrintUtils.setTextSize(textSize);
+            result.success(true);
+        } catch (Exception e) {
+            Log.d("ThangNQQQQQQQQQQ", e.getMessage());
+
+        }
+
     }
 
 
     private void setTextTypeface() {
         int typeface = call.argument("typeface");
         Typeface selectedTypeFace;
-        switch (typeface){
+        switch (typeface) {
             case 1:
                 selectedTypeFace = Typeface.MONOSPACE;
                 break;
@@ -194,12 +199,10 @@ public class IminPrinter {
 
 
     private void printText() {
-        try{
-            String text = call.argument("text");
-            iminPrintUtils.printText(text);
-        }finally{
-            result.success(true);
-        }
+
+        String text = call.argument("text");
+        iminPrintUtils.printText(text);
+        result.success(true);
     }
 
 
@@ -240,9 +243,12 @@ public class IminPrinter {
     }
 
     private void setQrSize() {
+
         int size = call.argument("size");
         iminPrintUtils.setQrCodeSize(size);
         result.success(true);
+
+
     }
 
     private void setQrCorrectionLevel() {
